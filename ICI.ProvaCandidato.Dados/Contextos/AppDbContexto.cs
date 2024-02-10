@@ -8,6 +8,7 @@ namespace ICI.ProvaCandidato.Dados.Contextos
     {
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Noticia> Noticias { get; set; }
 
         public AppDbContexto(DbContextOptions options) : base(options)
         {
