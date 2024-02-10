@@ -7,6 +7,7 @@ namespace ICI.ProvaCandidato.Dados.Contextos
     public class AppDbContexto : DbContext
     {
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         public AppDbContexto(DbContextOptions options) : base(options)
         {
