@@ -3,14 +3,16 @@ using ICI.ProvaCandidato.Dados.Contextos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ICI.ProvaCandidato.Dados.Migrations
 {
     [DbContext(typeof(AppDbContexto))]
-    partial class AppDbContextoModelSnapshot : ModelSnapshot
+    [Migration("20240210171046_Add_NoticiaTag")]
+    partial class Add_NoticiaTag
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
