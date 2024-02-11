@@ -18,6 +18,8 @@ namespace ICI.ProvaCandidato.Dados
             });
 
             services.AddScoped<ITagRepositorio, TagRepositorio>();
+            services.AddScoped<INoticiaRepositorio, NoticiaRepositorio>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
             return services;
         }

@@ -3,6 +3,7 @@ using ICI.ProvaCandidato.Negocio.Contratos.Repositorios;
 using ICI.ProvaCandidato.Negocio.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ICI.ProvaCandidato.Dados.Repositorios
@@ -43,6 +44,14 @@ namespace ICI.ProvaCandidato.Dados.Repositorios
         {
             return await this._contexto.Tags
                 .Include(tag => tag.NoticiaTags)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Tag>> ObterTagsAsync(IEnumerable<int> tagsIds)
+        {
+            return await this._contexto.Tags
+                .AsNoTracking()
+                .Where(tag=>tagsIds.Contains(tag.Id))
                 .ToListAsync();
         }
     }
