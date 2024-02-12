@@ -25,6 +25,7 @@ namespace ICI.ProvaCandidato.Web.Controllers
         public IActionResult Index()
 		{
 			var x = _contexto.Tags.ToList();
+			var y = _contexto.Usuarios.ToList();
 			return View();
 		}
 

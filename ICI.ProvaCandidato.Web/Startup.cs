@@ -1,4 +1,6 @@
+using ICI.ProvaCandidato.Dados;
 using ICI.ProvaCandidato.Dados.Contextos;
+using ICI.ProvaCandidato.Negocio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -19,11 +21,8 @@ namespace ICI.ProvaCandidato.Web
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddDbContext<AppDbContexto>(options =>
-			{
-				string connection = Configuration.GetConnectionString("Default");
-				options.UseSqlServer(connection);
-			});
+			services.AddModuloDados(Configuration);
+			services.AddProvaCandidatoNegocioModulo();
 			services.AddControllersWithViews();
 		}
 

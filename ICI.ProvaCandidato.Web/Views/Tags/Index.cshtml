@@ -1,0 +1,41 @@
+﻿@model TagIndexViewModel
+
+<h1>Lista de tags</h1>
+<div class="row">
+    <div class="col">
+        <a asp-action="Cadastro" class="btn btn-info mb-3">Nova Tag</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered filter-datatable" width="100%">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th style="width:80%">Descrição</th>
+                    <th >Opções</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tag in Model.Tags)
+                {
+                    <tr>
+                        <td scope="row">@tag.Id</td>
+                        <td>@tag.Descricao</td>
+                        <td>
+                            <button data-url="/tags/excluir/@tag.Id" class="btn btn-sm btn-danger btnRemove" @string.Format("{0}", tag.TemNoticias ? "disabled=disabled" : "")> Excluir </button>
+                            &nbsp;
+                            <a class="btn btn-sm btn-warning" asp-action="Cadastro" asp-route-id="@tag.Id"> Editar </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Tag.js"> </script>
+}

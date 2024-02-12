@@ -1,0 +1,71 @@
+﻿@model NoticiaCadastroViewModel
+
+<h1>Cadastro de tag</h1>
+<div class="row">
+    <div class="col">
+        <form name="formCadastro" asp-antiforgery="true" method="post" asp-action="Cadastro">
+            <div class="form-group">
+                <label for="txtTitulo">Título</label>
+                <input type="text" asp-for="Noticia.Titulo" class="form-control col-md-6" id="txtTitulo" required placeholder="Informe o título">
+            </div>
+
+            <div class="form-group">
+                <label for="txtTexto">Texto</label>
+                <textarea type="text" asp-for="Noticia.Texto" class="form-control" rows="5" cols="5" id="txtTexto" required placeholder="Informe o texto"></textarea>
+            </div>
+
+            @if (!Model.Sucesso && !string.IsNullOrWhiteSpace(Model.Mensagem))
+            {
+            <p class="alert alert-danger alert-block">
+            @Html.Raw(Model.Mensagem)
+            </p>
+            }
+
+            <h3>Vincular Tags</h3>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-bordered filter-datatable" width="100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th style="width:80%">Descrição</th>
+                                <th>Selecione</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Tags != null && Model.Tags != null)
+                            {
+                                foreach (var tag in Model.Tags)
+                                {
+                                    <tr>
+                                        <td scope="row">@tag.Id</td>
+                                        <td>@tag.Descricao</td>
+                                        <td>
+                                            <div style="text-align:center;padding:5px">
+                                                <input type="checkbox" class="chckTag" id="chk_@tag.Id" value="@tag.Id" data-nome="@tag.Descricao" @(tag.Seleciocionado ? "checked" : "") />
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <input type="hidden" asp-for="Noticia.Id" />
+            <input type="hidden" asp-for="Noticia.UsuarioId" />
+            <input type="hidden" asp-for="TagsSelecionadas" id="hdfTags" />
+
+
+            <a asp-action="index" class="btn btn-outline-info"> Voltar</a>
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Noticia.js"></script>
+}

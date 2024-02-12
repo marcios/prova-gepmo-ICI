@@ -25,8 +25,6 @@ namespace ICI.ProvaCandidato.Dados.Repositorios
 
         public async Task AtualizarAsync(Noticia noticia)
         {
-            //if (this._contexto.Entry(noticia).State == EntityState.Unchanged )
-            //    this._contexto.Entry(noticia).State = EntityState.Modified;
             await this._contexto.SaveChangesAsync();
 
         }
@@ -47,6 +45,12 @@ namespace ICI.ProvaCandidato.Dados.Repositorios
                         .ThenInclude(noticiaTag => noticiaTag.Tag)
                     .Include(noticia => noticia.Usuario)
                     .FirstOrDefaultAsync(noticia => noticia.Id == id);
+        }
+
+        public async Task ExcluirAsync(Noticia noticia)
+        {
+            this._contexto.Noticias.Remove(noticia);
+            await this._contexto.SaveChangesAsync();
         }
     }
 }
