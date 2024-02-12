@@ -5,6 +5,9 @@
         //$('.chckTag').on('click', Noticia.selecionarTag);
 
         $('form[name=formCadastro]').on('submit', Noticia.salvar)
+        $('.btnLimpar').on('click', function () {
+            $('input[type=text], textarea').val('');
+        })
     },
 
     salvar: function (event) {
