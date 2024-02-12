@@ -19,6 +19,6 @@ namespace ICI.ProvaCandidato.Web.ViewModels
                 this.Noticias = noticias.Select(noticia => new NoticiaModel(noticia, noticia.NoticiaTags.Any())).ToList();
             }
         }
-        public List<NoticiaModel> Noticias { get; set; }
+        public List<NoticiaModel> Noticias { get; set; } = new List<NoticiaModel>();
     }
 }
